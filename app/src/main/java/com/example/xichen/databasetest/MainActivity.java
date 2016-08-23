@@ -18,39 +18,48 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbHelper = new MyDatabastHelper(this, "BookStore.db", null, 1);
+        dbHelper = new MyDatabastHelper(this, "BookStore.db", null, 2);
 
         Button create = (Button) findViewById(R.id.create_database);
+        Button add = (Button) findViewById(R.id.add_data);
+        Button update = (Button) findViewById(R.id.update_data);
+        Button delete = (Button) findViewById(R.id.delete_data);
+        Button query = (Button) findViewById(R.id.query_data);
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                db = dbHelper.getWritableDatabase();
                 dbHelper.getWritableDatabase();
             }
         });
 
-        Button add = (Button) findViewById(R.id.add_data);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
-                values.put("name", "The Da Vinci Code");
-                values.put("author", "Dan Brown");
-                values.put("pages", 454);
-                values.put("price", 16.96);
+                values.put("name", "The Rings");
+                values.put("author", "JRR Tolkin");
+                values.put("pages", 1046);
+                values.put("price", 50.96);
                 db.insert("Book", null, values);
+//                values.put("name", "The Da Vinci Code");
+//                values.put("author", "Dan Brown");
+//                values.put("pages", 454);
+//                values.put("price", 16.96);
+//                db.insert("Book", null, values);
 
-                values.clear();
-                values.put("name", "The Lost Symbol");
-                values.put("author", "Dan Brown");
-                values.put("pages", 510);
-                values.put("price", 19.95);
-                db.insert("Book", null, values);
+//                values.clear();
+//                values.put("name", "The Lost Symbol");
+//                values.put("author", "Dan Brown");
+//                values.put("pages", 510);
+//                values.put("price", 19.95);
+//                db.insert("Book", null, values);
 
             }
         });
 
-        Button update = (Button) findViewById(R.id.update_data);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,16 +70,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button delete = (Button) findViewById(R.id.delete_data);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
-                db.delete("Book", "page>?", new String[]{"500"});
+                db.delete("Book", "pages>?", new String[]{"500"});
             }
         });
 
-        Button query = (Button) findViewById(R.id.query_data);
         query.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
