@@ -13,7 +13,7 @@ public class MyDatabastHelper extends SQLiteOpenHelper {
             + "id integer primary key autoincrement, "
             + "author text, "
             + "price real, "
-            + "pages integer, "
+            + "  integer, "
             + "name text)";
 
     public static final String CREAT_CATEGORY = "create table Category ("

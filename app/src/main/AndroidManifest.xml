@@ -15,6 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.example.xichen.databasetest.provider"
+            android:name="com.example.xichen.databasetest.DatabaseProvider"
+            android:exported="true">
+            </provider>
     </application>
 
 </manifest>
